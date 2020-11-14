@@ -12,10 +12,13 @@ function App() {
   })
   useEffect(() => {
     movies$.then(res => {
-      const categoryList = res.map(movie => {return movie.category})
-      return setCategories(categoryList)
+      
+      const newRes = res.map(movie => { return movie.category })
+      const categoryList = new Set([...newRes]);
+      return setCategories([...categoryList])
     })
   }, [movieList.length])
+      console.log('new Set', categories)
   console.log('movieList',movieList)
   return (
     <div>
